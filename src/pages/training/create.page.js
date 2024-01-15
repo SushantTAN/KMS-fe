@@ -11,11 +11,20 @@ const AddTraining = () => {
     employee: undefined,
   });
   const [projectList, setProjectList] = useState([]);
+  const [employeeList, setEmployeeList] = useState([]);
+
 
   const getOptions = async () => {
     try {
       const response = await axiosInstance.get('/project');
       setProjectList(response.data);
+    } catch (err) {
+      console.log(err);
+    }
+
+    try {
+      const response1 = await axiosInstance.get('/employee');
+      setEmployeeList(response1.data);
     } catch (err) {
       console.log(err);
     }
@@ -31,7 +40,6 @@ const AddTraining = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("data", formData)
 
     try {
       await axiosInstance.post("/training", {
@@ -50,9 +58,9 @@ const AddTraining = () => {
       <label>Project</label>
       <select name="project" value={formData.project} onChange={handleChange}>
         <option value="">Select project</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
+        {
+          projectList?.map((el, index) => <option key={index} value={el._id}>{el.name}</option>)
+        }
       </select>
       <br />
 
@@ -60,12 +68,15 @@ const AddTraining = () => {
       <input name="trainee" value={formData.trainee} onChange={handleChange} />
       <br />
 
-      <label>employee</label>
+      <label>Trainer</label>
       <select name="employee" value={formData.employee} onChange={handleChange}>
         <option value="">Select employee</option>
-        <option value="1">1</option>
+        {/* <option value="1">1</option>
         <option value="2">2</option>
-        <option value="3">3</option>
+        <option value="3">3</option> */}
+        {
+          employeeList?.map((el, index) => <option key={index} value={el._id}>{el.name}</option>)
+        }
       </select>
       <br />
 

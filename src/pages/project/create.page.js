@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axiosInstance from "../../requests";
 
 const AddProject = () => {
 
@@ -7,20 +8,25 @@ const AddProject = () => {
 
   const [formData, setFormData] = useState({
     name: "",
-    teamMembers: [{ name: "gg", }, { name: "ff" }]
+    totalMembers: 0,
   });
 
   const handleChange = (e) => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("data", formData)
-    navigate("/training");
-  }
 
-  const teamMembers = [{ name: "gg", }, { name: "ff" }]
+    try {
+      await axiosInstance.post("/project", {
+        ...formData
+      });
+      navigate("/project");
+    } catch (err) {
+      console.log("err", err);
+    }
+  }
 
   return <main className={`main-container`}>
     <h1>Add Project</h1>
@@ -31,16 +37,9 @@ const AddProject = () => {
       <input name="name" value={formData.name} onChange={handleChange} />
       <br />
 
-      <label>Team members</label>
-      <select name="teamMembers" value={formData.trainer} onChange={(e) => {
-        console.log(e.target.value);
-      }}>
-        <option value="">Select team members</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-      </select>
-      <div className="chip-container">
+      <label>No. of Team members</label>
+      <input name="totalMembers" value={formData.totalMembers} onChange={handleChange} type="number" />
+      {/* <div className="chip-container">
         {
           formData?.teamMembers?.map((el, index) => <span key={index} className="chip">{el.name} &nbsp; <span style={{ cursor: "pointer" }} onClick={() => {
             setFormData(prev => {
@@ -49,7 +48,7 @@ const AddProject = () => {
             })
           }}>X</span></span>)
         }
-      </div>
+      </div> */}
       <br />
 
       <div>

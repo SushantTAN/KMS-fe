@@ -1,6 +1,24 @@
+import { useEffect, useState } from "react";
 import PageHeader from "../../conponents/pageHeader.component";
+import axiosInstance from "../../requests";
 
 const ListProject = () => {
+
+  const [list, setList] = useState([]);
+
+  const getData = async () => {
+    try {
+      const response = await axiosInstance.get('/project');
+      setList(response.data);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   return <main className={`main-container`}>
     <PageHeader
       title="Project"
@@ -12,23 +30,24 @@ const ListProject = () => {
         <tr>
           <th>Project Name</th>
           <th>Total members</th>
+          <th></th>
         </tr>
       </thead>
 
       <tbody>
-        <tr>
-          <td>sus</td>
-          <td>my role</td>
+        {list.map((el, index) => <tr key={index}>
+          <td>{el.name}</td>
+          <td>{el.totalMembers}</td>
+          <td>
+            <div className="delete-chip" onClick={async () => {
+              await axiosInstance.delete(`/project/${el._id}`);
+              getData();
+            }}>Delete</div>
 
-        </tr>
-        <tr>
-          <td>sus</td>
-          <td>my role</td>
+          </td>
 
-        </tr><tr>
-          <td>sus</td>
-          <td>my role dygad iwgdiwgeidweig iewg iwe iu ewi ciew ic ewcwe uc </td>
-        </tr>
+        </tr>)}
+
       </tbody>
     </table>
   </main>
