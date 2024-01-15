@@ -85,4 +85,21 @@ label {
 input {
   padding: 12px;
   border-radius: 8px;
+  border: 1px solid black;
+}
+
+select {
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.chip {
+  padding: 6px 12px;
+  margin-right: 12px;
+  border-radius: 12px;
+  background-color: rgb(240, 240, 240);
+}
+
+.chip-container {
+  margin-top: 20px;
 }

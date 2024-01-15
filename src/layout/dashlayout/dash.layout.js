@@ -13,9 +13,9 @@ const DashLayout = () => {
       <div>
         <Link to={"/project"}>Project</Link>
       </div>
-      <div>
+      {/* <div>
         <Link to={"/incentives"}>Incentives</Link>
-      </div>
+      </div> */}
     </header>
     <Outlet />
   </>
