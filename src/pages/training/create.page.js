@@ -1,23 +1,46 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axiosInstance from "../../requests";
 
 const AddTraining = () => {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     project: undefined,
-    traineeName: "",
-    trainer: undefined,
+    trainee: "",
+    employee: undefined,
   });
+  const [projectList, setProjectList] = useState([]);
+
+  const getOptions = async () => {
+    try {
+      const response = await axiosInstance.get('/project');
+      setProjectList(response.data);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  useEffect(() => {
+    getOptions();
+  }, []);
 
   const handleChange = (e) => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("data", formData)
-    navigate("/training");
+
+    try {
+      await axiosInstance.post("/training", {
+        ...formData
+      });
+      navigate("/training");
+    } catch (err) {
+      console.log("err", err);
+    }
   }
 
   return <main className={`main-container`}>
@@ -34,12 +57,12 @@ const AddTraining = () => {
       <br />
 
       <label>Trainee name</label>
-      <input name="traineeName" value={formData.traineeName} onChange={handleChange} />
+      <input name="trainee" value={formData.trainee} onChange={handleChange} />
       <br />
 
-      <label>Trainer</label>
-      <select name="trainer" value={formData.trainer} onChange={handleChange}>
-        <option value="">Select trainer</option>
+      <label>employee</label>
+      <select name="employee" value={formData.employee} onChange={handleChange}>
+        <option value="">Select employee</option>
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>

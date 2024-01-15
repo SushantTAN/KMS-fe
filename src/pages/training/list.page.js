@@ -1,6 +1,24 @@
+import { useEffect, useState } from "react";
 import PageHeader from "../../conponents/pageHeader.component";
+import axiosInstance from "../../requests";
 
 const ListTraining = () => {
+
+  const [list, setList] = useState([]);
+
+  const getData = async () => {
+    try {
+      const response = await axiosInstance.get('/training');
+      setList(response.data);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   return <main className={`main-container`}>
     <PageHeader
       title="Training"
@@ -17,20 +35,11 @@ const ListTraining = () => {
       </thead>
 
       <tbody>
-        <tr>
-          <td>sus</td>
-          <td>my role</td>
-          <td>something</td>
-        </tr>
-        <tr>
-          <td>sus</td>
-          <td>my role</td>
-          <td>something</td>
-        </tr><tr>
-          <td>sus</td>
-          <td>my role dygad iwgdiwgeidweig iewg iwe iu ewi ciew ic ewcwe uc </td>
-          <td>something iyagi cgicisdcisicdsicids ciusdiuhiushdic iu jhqgd iqgi wegdweyg ewiyg iw</td>
-        </tr>
+        { list.map((el, index) => <tr key={index}>
+          <td>{el.project}</td>
+          <td>{el.trainee}</td>
+          <td>{el.employee}</td>
+        </tr>)}
       </tbody>
     </table>
   </main>
