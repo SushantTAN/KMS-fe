@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axiosInstance from "../../requests";
 
 const AddEmployee = () => {
 
@@ -15,9 +16,17 @@ const AddEmployee = () => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    navigate("/employee");
+
+    try {
+      await axiosInstance.post("/employee", {
+        ...formData
+      });
+      navigate("/employee");
+    } catch (err) {
+      console.log("err", err);
+    }
   }
 
   return <main className={`main-container`}>
