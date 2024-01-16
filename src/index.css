@@ -33,7 +33,7 @@ table {
 }
 
 thead {
-  background-color: #f7e5b3;
+  background-color: #b3b9f7;
   border-bottom: 1px solid gray;
 }
 
@@ -60,7 +60,7 @@ button {
   padding: 8px 12px;
   border-radius: 20px;
   border: none;
-  background-color: #d4aa37;
+  background-color: #3747d4;
   cursor: pointer;
   color: white;
 }
