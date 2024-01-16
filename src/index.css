@@ -22,9 +22,13 @@ code {
   width: 100%;
   max-width: 800px;
   padding: 12px 0px;
+  padding-bottom: 200px;
 }
 
-h1 {}
+h1 {
+  /* padding: 12px; */
+  /* background-color: #f7e5b3; */
+}
 
 table {
   width: 100%;
@@ -110,4 +114,55 @@ select {
   cursor: pointer;
   background-color: rgb(227, 96, 96);
   color: white;
+}
+
+.card {
+  border: 1px solid rgb(197, 197, 197);
+  padding: 16px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.bold {
+  font-weight: 500;
+}
+
+h3 {
+  margin-bottom: 8px;
+}
+
+.side-link {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  border: 1px solid black;
+  padding: 12px 12px 12px 32px;
+  border-radius: 0px 20px 20px 0px;
+  cursor: pointer;
+  background-color: #d4aa37;
+  transition: all 0.5s ease-in-out;
+  color: black;
+  transform: translateX(-20px);
+}
+
+.side-link:hover {
+  background-color: #8a6e24;
+  transform: translateX(0px);
+}
+
+.side-link:nth-child(1) {
+  bottom: 150px;
+
+}
+
+.side-link:nth-child(2) {
+  bottom: 80px;
+
+}
+
+.side-link:nth-child(3) {
+  bottom: 10px;
 }

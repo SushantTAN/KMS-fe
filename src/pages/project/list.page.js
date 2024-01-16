@@ -25,31 +25,21 @@ const ListProject = () => {
       to="/project/create"
     />
 
-    <table>
-      <thead>
-        <tr>
-          <th>Project Name</th>
-          <th>Total members</th>
-          <th></th>
-        </tr>
-      </thead>
+    {
+      list.map((el, index) => <div key={index} className="card">
+        <div>
+          <h3>{el.name}</h3>
+          <p className="bold">Total members: {el.totalMembers}</p>
+        </div>
 
-      <tbody>
-        {list.map((el, index) => <tr key={index}>
-          <td>{el.name}</td>
-          <td>{el.totalMembers}</td>
-          <td>
-            <div className="delete-chip" onClick={async () => {
-              await axiosInstance.delete(`/project/${el._id}`);
-              getData();
-            }}>Delete</div>
-
-          </td>
-
-        </tr>)}
-
-      </tbody>
-    </table>
+        <div>
+          <div className="delete-chip" onClick={async () => {
+            await axiosInstance.delete(`/project/${el._id}`);
+            getData();
+          }}>Delete</div>
+        </div>
+      </div>)
+    }
   </main>
 }
 

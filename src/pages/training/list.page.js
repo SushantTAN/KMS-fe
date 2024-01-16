@@ -51,30 +51,23 @@ const ListTraining = () => {
       to="/training/create"
     />
 
-    <table>
-      <thead>
-        <tr>
-          <th>Trainee Name</th>
-          <th>Project</th>
-          <th>Employee</th>
-          <th></th>
-        </tr>
-      </thead>
+    {
+      list.map((el, index) => <div key={index} className="card">
+        <div>
+          <h3>{el.trainee}</h3>
+          <p className="bold">Project: {getNameByProjectId(el.project)}</p>
+          <p className="bold">Employee: {getNameByEmployeeId(el.employee)}</p>
+        </div>
 
-      <tbody>
-        {list.map((el, index) => <tr key={index}>
-          <td>{el.trainee}</td>
-          <td>{getNameByProjectId(el.project)}</td>
-          <td>{getNameByEmployeeId(el.employee)}</td>
-          <td>
-            <div className="delete-chip" onClick={async () => {
-              await axiosInstance.delete(`/training/${el._id}`);
-              getData();
-            }}>Delete</div>
-          </td>
-        </tr>)}
-      </tbody>
-    </table>
+        <div>
+          <div className="delete-chip" onClick={async () => {
+            await axiosInstance.delete(`/training/${el._id}`);
+            getData();
+          }}>Delete</div>
+        </div>
+      </div>)
+    }
+
   </main>
 }
 

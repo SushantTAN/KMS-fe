@@ -1,17 +1,20 @@
-import { Link, Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import styles from "../../styles/dash.module.scss";
 
 const DashLayout = () => {
+  const navigate = useNavigate();
   return <>
+    <h1 style={{ background: "#f7e5b3", padding: "12px" }}>Knowlege management system</h1>
     <header className={styles["header__container"]}>
-      <div>
-        <Link to={"/employee"}>Employee</Link>
+
+      <div className="side-link" onClick={() => navigate("/employee")}>
+        Employee
       </div>
-      <div>
-        <Link to={"/training"}>Training</Link>
+      <div className="side-link" onClick={() => navigate("/training")}>
+        Training
       </div>
-      <div>
-        <Link to={"/project"}>Project</Link>
+      <div className="side-link" onClick={() => navigate("/project")}>
+        Project
       </div>
       {/* <div>
         <Link to={"/incentives"}>Incentives</Link>

@@ -26,28 +26,22 @@ const ListEmployee = () => {
       to="/employee/create"
     />
 
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Role</th>
-          <th>Contributions</th>
-          <th></th>
-        </tr>
-      </thead>
+    {
+      list.map((el, index) => <div key={index} className="card">
+        <div>
+          <h3>{el.name}</h3>
+          <p className="bold">Role: {el.role}</p>
+          <p className="bold">Contribution: {el.contributions}</p>
+        </div>
 
-      <tbody>
-        {list.map((el, index) => <tr key={index}>
-          <td>{el.name}</td>
-          <td>{el.role}</td>
-          <td>{el.contributions}</td>
-          <td><div className="delete-chip" onClick={async () => {
+        <div>
+          <div className="delete-chip" onClick={async () => {
             await axiosInstance.delete(`/employee/${el._id}`);
             getData();
-          }}>Delete</div></td>
-        </tr>)}
-      </tbody>
-    </table>
+          }}>Delete</div>
+        </div>
+      </div>)
+    }
   </main>
 }
 
