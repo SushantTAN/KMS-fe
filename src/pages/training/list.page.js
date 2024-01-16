@@ -47,7 +47,7 @@ const ListTraining = () => {
 
   return <main className={`main-container`}>
     <PageHeader
-      title="Training"
+      title="Instruction sessions"
       to="/training/create"
     />
 
@@ -56,7 +56,7 @@ const ListTraining = () => {
         <div>
           <h3>{el.trainee}</h3>
           <p className="bold">Project: {getNameByProjectId(el.project)}</p>
-          <p className="bold">Employee: {getNameByEmployeeId(el.employee)}</p>
+          <p className="bold">Instructor: {getNameByEmployeeId(el.employee)}</p>
         </div>
 
         <div>

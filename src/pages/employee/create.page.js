@@ -30,10 +30,10 @@ const AddEmployee = () => {
   }
 
   return <main className={`main-container`}>
-    <h1>Add Employee</h1>
+    <h1>Add User</h1>
 
     <form>
-      <label>Employee name</label>
+      <label>User full name</label>
       <input name="name" value={formData.name} onChange={handleChange} />
       <br />
 

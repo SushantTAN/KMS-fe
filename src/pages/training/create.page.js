@@ -52,7 +52,7 @@ const AddTraining = () => {
   }
 
   return <main className={`main-container`}>
-    <h1>Add Training</h1>
+    <h1>Add Instruction session</h1>
 
     <form>
       <label>Project</label>
@@ -68,7 +68,7 @@ const AddTraining = () => {
       <input name="trainee" value={formData.trainee} onChange={handleChange} />
       <br />
 
-      <label>Trainer</label>
+      <label>Instructor</label>
       <select name="employee" value={formData.employee} onChange={handleChange}>
         <option value="">Select employee</option>
         {/* <option value="1">1</option>

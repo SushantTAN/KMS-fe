@@ -22,7 +22,7 @@ const ListEmployee = () => {
 
   return <main className={`main-container ${styles["employee"]}`}>
     <PageHeader
-      title="Employee"
+      title="User"
       to="/employee/create"
     />
 

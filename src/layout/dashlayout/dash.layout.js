@@ -8,10 +8,10 @@ const DashLayout = () => {
     <header className={styles["header__container"]}>
 
       <div className="side-link" onClick={() => navigate("/employee")}>
-        Employee
+        User
       </div>
       <div className="side-link" onClick={() => navigate("/training")}>
-        Training
+        Instruction session
       </div>
       <div className="side-link" onClick={() => navigate("/project")}>
         Project
